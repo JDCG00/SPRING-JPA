@@ -16,9 +16,15 @@
 
 package org.springframework.samples.petclinic;
 
+import jakarta.transaction.Transactional;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportRuntimeHints;
+import org.springframework.samples.petclinic.vet.Vet;
+import org.springframework.samples.petclinic.vet.VetRepository;
+import org.springframework.samples.petclinic.SpecialtyRepository;
 
 /**
  * PetClinic Spring Boot Application.
@@ -26,12 +32,27 @@ import org.springframework.context.annotation.ImportRuntimeHints;
  * @author Dave Syer
  *
  */
+
+/**
+ * TODO [x] Crear un objeto Vet sin Speciality [x] Persistir el objeto Vet en BBDD [x]
+ * Consultar por ID y comprobar que se ha creado correctamente [x] Editar el elemento
+ * recién creado para añadir una Speciality concreta [x] Listar todos los veterinarios
+ * existentes
+ */
 @SpringBootApplication
 @ImportRuntimeHints(PetClinicRuntimeHints.class)
 public class PetClinicApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PetClinicApplication.class, args);
+	}
+
+	@Bean
+	public CommandLineRunner demoVetRepository(VetRepository vetRepository, SpecialtyRepository specialtyRepository) {
+		return (args) -> {
+			Vet vet = new Vet();
+
+		};
 	}
 
 }
