@@ -1,5 +1,8 @@
 package org.springframework.samples.petclinic;
 
-public interface SpecialtyRepository {
+import org.springframework.data.repository.query.Param;
 
+public interface SpecialtyRepository {
+	void save(Specialty specialty);
+	Specialty findById(@Param("id") Integer id);
 }

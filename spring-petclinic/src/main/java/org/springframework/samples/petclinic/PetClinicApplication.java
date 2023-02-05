@@ -16,7 +16,7 @@
 
 package org.springframework.samples.petclinic;
 
-import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,6 +39,7 @@ import org.springframework.samples.petclinic.SpecialtyRepository;
  * recién creado para añadir una Speciality concreta [x] Listar todos los veterinarios
  * existentes
  */
+@Slf4j
 @SpringBootApplication
 @ImportRuntimeHints(PetClinicRuntimeHints.class)
 public class PetClinicApplication {
@@ -51,7 +52,11 @@ public class PetClinicApplication {
 	public CommandLineRunner demoVetRepository(VetRepository vetRepository, SpecialtyRepository specialtyRepository) {
 		return (args) -> {
 			Vet vet = new Vet();
+			vet.setFirstName("Juan");
+			vet.setLastName("Rojas");
+			vetRepository.save(vet);
 
+			vetRepository.findById(1);
 		};
 	}
 
