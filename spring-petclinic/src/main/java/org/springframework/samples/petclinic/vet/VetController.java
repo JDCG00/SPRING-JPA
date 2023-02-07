@@ -17,6 +17,11 @@ package org.springframework.samples.petclinic.vet;
 
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -67,7 +72,9 @@ class VetController {
 		return vetRepository.findAll(pageable);
 	}
 
-	@GetMapping({ "/vets" })
+	@GetMapping({"/vets"})
+//	@Operation(summary = "Obtiene la lista de productos disponible que cumplen las condiciones")
+//	@ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Lista de productos", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = Long.class))})})
 	public @ResponseBody Vets showResourcesVetList() {
 		// Here we are returning an object of type 'Vets' rather than a collection of Vet
 		// objects so it is simpler for JSon/Object mapping

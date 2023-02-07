@@ -16,15 +16,15 @@
 
 package org.springframework.samples.petclinic;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.samples.petclinic.vet.Vet;
 import org.springframework.samples.petclinic.vet.VetRepository;
-import org.springframework.samples.petclinic.SpecialtyRepository;
 
 /**
  * PetClinic Spring Boot Application.
@@ -41,7 +41,7 @@ import org.springframework.samples.petclinic.SpecialtyRepository;
  */
 @Slf4j
 @SpringBootApplication
-@ImportRuntimeHints(PetClinicRuntimeHints.class)
+@OpenAPIDefinition(info = @Info(title = "ProductStore API", version = "2.0", description = "ProductStore Information"))
 public class PetClinicApplication {
 
 	public static void main(String[] args) {
@@ -52,11 +52,15 @@ public class PetClinicApplication {
 	public CommandLineRunner demoVetRepository(VetRepository vetRepository, SpecialtyRepository specialtyRepository) {
 		return (args) -> {
 			Vet vet = new Vet();
-			vet.setFirstName("Juan");
-			vet.setLastName("Rojas");
-			vetRepository.save(vet);
+			//Añadir un veterinario con nombre y apellidos
+			// vet.setFirstName("Juan");
+			// vet.setLastName("Rojas");
+			// vetRepository.save(vet);
+			log.info("Lista de todos los veterinarios");
+			for (Vet all_vets: vetRepository.findAll()){
+				log.info("Vet: " + all_vets);
+			}
 
-			vetRepository.findById(1);
 		};
 	}
 

@@ -62,6 +62,6 @@ public interface VetRepository extends Repository<Vet, Integer> {
 	// Buscar por id
 	Vet findById(@Param("id") Integer id);
 
-//	Vet findByLastName(@Param("last_name"));
+	Vet findByLastName(@Param("last_name") String last_name);
 
 }
